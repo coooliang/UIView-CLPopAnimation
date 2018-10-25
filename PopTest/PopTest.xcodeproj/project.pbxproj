@@ -69,16 +69,16 @@
 		90190E5A21816D3D0027E8E7 /* PopTest */ = {
 			isa = PBXGroup;
 			children = (
+				90190E7121816DB80027E8E7 /* PopAnimation */,
+				90190E7421816DB80027E8E7 /* ViewControllers */,
 				90190E5B21816D3D0027E8E7 /* AppDelegate.h */,
 				90190E5C21816D3D0027E8E7 /* AppDelegate.m */,
 				90190E6421816D400027E8E7 /* Assets.xcassets */,
 				90190E6921816D400027E8E7 /* Info.plist */,
 				90190E6621816D400027E8E7 /* LaunchScreen.storyboard */,
 				90190E6A21816D400027E8E7 /* main.m */,
-				90190E7121816DB80027E8E7 /* PopAnimation */,
 				90190E5E21816D3D0027E8E7 /* ViewController.h */,
 				90190E5F21816D3D0027E8E7 /* ViewController.m */,
-				90190E7421816DB80027E8E7 /* ViewControllers */,
 			);
 			path = PopTest;
 			sourceTree = "<group>";

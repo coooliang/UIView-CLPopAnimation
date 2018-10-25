@@ -12,10 +12,10 @@
 #define WEAKSELF typeof(self) __weak weakSelf = self;
 @implementation UIView (CLPopAnimation)
 
--(void)hide{
-    [self hide:nil];
+-(void)cl_hide{
+    [self cl_hide:nil];
 }
--(void)hide:(nullable void(^)(void))block{
+-(void)cl_hide:(nullable void(^)(void))block{
     POPSpringAnimation *springAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPViewSize];
     springAnimation.toValue = [NSValue valueWithCGSize:CGSizeZero];
     [springAnimation setCompletionBlock:^(POPAnimation *anim, BOOL finished) {
@@ -26,10 +26,10 @@
     [self pop_addAnimation:springAnimation forKey:nil];
 }
 
--(void)show{
-    [self show:nil];
+-(void)cl_show{
+    [self cl_show:nil];
 }
--(void)show:(void(^)(void))block{
+-(void)cl_show:(void(^)(void))block{
     POPSpringAnimation *springAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPViewSize];
     springAnimation.fromValue = [NSValue valueWithCGSize:CGSizeZero];
     springAnimation.toValue = [NSValue valueWithCGSize:self.frame.size];
@@ -42,10 +42,10 @@
     [self pop_addAnimation:springAnimation forKey:nil];
 }
 
--(void)jelly{
-    [self jelly:nil];
+-(void)cl_jelly{
+    [self cl_jelly:nil];
 }
--(void)jelly:(void(^)(void))block{
+-(void)cl_jelly:(void(^)(void))block{
     WEAKSELF
     POPSpringAnimation *scaleAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
     scaleAnimation.toValue = [NSValue valueWithCGSize:CGSizeMake(0.95, 0.95)];
@@ -75,10 +75,10 @@
     [self.layer pop_addAnimation:scaleAnimation forKey:nil];
 }
 
--(void)shake{
-    [self shake:nil];
+-(void)cl_shake{
+    [self cl_shake:nil];
 }
--(void)shake:(void(^)(void))block{
+-(void)cl_shake:(void(^)(void))block{
     POPSpringAnimation *positionAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionX];
     positionAnimation.fromValue = [NSValue valueWithCGPoint:CGPointMake(self.center.x-10, self.center.y)];
     positionAnimation.toValue = [NSValue valueWithCGPoint:self.center];
@@ -92,7 +92,7 @@
     [self.layer pop_addAnimation:positionAnimation forKey:nil];
 }
 
--(void)move:(NSValue *)point,...NS_REQUIRES_NIL_TERMINATION {
+-(void)cl_move:(NSValue *)point,...NS_REQUIRES_NIL_TERMINATION {
     NSParameterAssert(point);
     NSMutableArray *points = [NSMutableArray arrayWithCapacity:0];
     [points addObject:point];
@@ -107,7 +107,7 @@
     [self cl_spring_move:1 points:points block:nil];
 }
 
--(void)move:(void(^)(void))block point:(NSValue *)point,... NS_REQUIRES_NIL_TERMINATION {
+-(void)cl_move:(void(^)(void))block point:(NSValue *)point,... NS_REQUIRES_NIL_TERMINATION {
     NSParameterAssert(point);
     NSMutableArray *points = [NSMutableArray arrayWithCapacity:0];
     [points addObject:point];
@@ -122,7 +122,7 @@
     [self cl_spring_move:1 points:points block:block];
 }
 
-- (void)springMove:(NSValue *)point, ... NS_REQUIRES_NIL_TERMINATION {
+- (void)cl_springMove:(NSValue *)point, ... NS_REQUIRES_NIL_TERMINATION {
     NSParameterAssert(point);
     NSMutableArray *points = [NSMutableArray arrayWithCapacity:0];
     [points addObject:point];
@@ -137,7 +137,7 @@
      [self cl_spring_move:3 points:points block:nil];
 }
 
--(void)springMove:(void(^)(void))block point:(NSValue *)point,... NS_REQUIRES_NIL_TERMINATION {
+-(void)cl_springMove:(void(^)(void))block point:(NSValue *)point,... NS_REQUIRES_NIL_TERMINATION {
     NSParameterAssert(point);
     NSMutableArray *points = [NSMutableArray arrayWithCapacity:0];
     [points addObject:point];

@@ -12,23 +12,23 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (CLPopAnimation)
 
--(void)show;
--(void)show:(nullable void(^)(void))block;
+-(void)cl_show;
+-(void)cl_show:(nullable void(^)(void))block;
 
--(void)hide;
--(void)hide:(nullable void(^)(void))block;
+-(void)cl_hide;
+-(void)cl_hide:(nullable void(^)(void))block;
 
--(void)jelly;
--(void)jelly:(nullable void(^)(void))block;
+-(void)cl_jelly;
+-(void)cl_jelly:(nullable void(^)(void))block;
 
--(void)shake;
--(void)shake:(nullable void(^)(void))block;
+-(void)cl_shake;
+-(void)cl_shake:(nullable void(^)(void))block;
 
--(void)move:(NSValue *)point,... NS_REQUIRES_NIL_TERMINATION;
--(void)move:(void(^)(void))block point:(NSValue *)point,... NS_REQUIRES_NIL_TERMINATION;
+-(void)cl_move:(NSValue *)point,... NS_REQUIRES_NIL_TERMINATION;
+-(void)cl_move:(void(^)(void))block point:(NSValue *)point,... NS_REQUIRES_NIL_TERMINATION;
 
--(void)springMove:(NSValue *)point,... NS_REQUIRES_NIL_TERMINATION;
--(void)springMove:(void(^)(void))block point:(NSValue *)point,... NS_REQUIRES_NIL_TERMINATION;
+-(void)cl_springMove:(NSValue *)point,... NS_REQUIRES_NIL_TERMINATION;
+-(void)cl_springMove:(void(^)(void))block point:(NSValue *)point,... NS_REQUIRES_NIL_TERMINATION;
 
 @end
 

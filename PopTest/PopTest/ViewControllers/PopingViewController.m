@@ -52,7 +52,7 @@
     self.button5 = [self createButton:CGRectMake(50, 350, 150, 40) title:@"show"];
     [self.button5 addTarget:self action:@selector(show) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.button5];
-    [self.button5 show];
+    [self.button5 cl_show];
 }
 
 -(UIButton *)createButton:(CGRect)frame title:(NSString *)title{
@@ -68,28 +68,28 @@
 
 #pragma mark - actions
 -(void)hide{
-    [self.button6 hide:^{
+    [self.button6 cl_hide:^{
         NSLog(@"hide");
         [self.button6 removeFromSuperview];
     }];
 }
 -(void)show{
-    [self.button5 show];
+    [self.button5 cl_show];
 }
 -(void)jelly{
-    [self.button4 jelly];
+    [self.button4 cl_jelly];
 }
 -(void)shake{
-    [self.button shake];
+    [self.button cl_shake];
 }
 -(void)springMove{
     //[self.button2 springMove...];
-    [self.button2 springMove:^{
+    [self.button2 cl_springMove:^{
         NSLog(@"springMove block");
     } point:[NSValue valueWithCGPoint:CGPointMake(200, 300)],[NSValue valueWithCGPoint:CGPointMake(200, 400)], nil];
 }
 -(void)move{
-    [self.button3 move:[NSValue valueWithCGPoint:CGPointMake(200, 300)],[NSValue valueWithCGPoint:CGPointMake(200, 450)],nil];
+    [self.button3 cl_move:[NSValue valueWithCGPoint:CGPointMake(200, 300)],[NSValue valueWithCGPoint:CGPointMake(200, 450)],nil];
 }
 
 - (void)dealloc{
