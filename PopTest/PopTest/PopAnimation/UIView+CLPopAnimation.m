@@ -12,10 +12,41 @@
 #define WEAKSELF typeof(self) __weak weakSelf = self;
 @implementation UIView (CLPopAnimation)
 
+-(void)cl_fadeIn{
+    [self cl_fadeIn:nil];
+}
+-(void)cl_fadeIn:(void(^)(void))block{
+    POPBasicAnimation *anim = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
+    anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    anim.fromValue = @(0.0);
+    anim.toValue = @(1.0);
+    [anim setCompletionBlock:^(POPAnimation *anim, BOOL finished) {
+        if (finished && block) {
+            block();
+        }
+    }];
+    [self pop_addAnimation:anim forKey:nil];
+}
+
+-(void)cl_fadeOut{
+    [self cl_fadeOut:nil];
+}
+-(void)cl_fadeOut:(void(^)(void))block{
+    POPBasicAnimation *anim = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
+    anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    anim.toValue = @(0.0);
+    [anim setCompletionBlock:^(POPAnimation *anim, BOOL finished) {
+        if (finished && block) {
+            block();
+        }
+    }];
+    [self pop_addAnimation:anim forKey:nil];
+}
+
 -(void)cl_hide{
     [self cl_hide:nil];
 }
--(void)cl_hide:(nullable void(^)(void))block{
+-(void)cl_hide:(void(^)(void))block{
     POPSpringAnimation *springAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPViewSize];
     springAnimation.toValue = [NSValue valueWithCGSize:CGSizeZero];
     [springAnimation setCompletionBlock:^(POPAnimation *anim, BOOL finished) {

@@ -18,6 +18,8 @@
 @property(nonatomic,strong)UIButton *button4;
 @property(nonatomic,strong)UIButton *button5;
 @property(nonatomic,strong)UIButton *button6;
+@property(nonatomic,strong)UIButton *button7;
+@property(nonatomic,strong)UIButton *button8;
 
 @end
 
@@ -46,6 +48,10 @@
     [self.button6 addTarget:self action:@selector(hide) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.button6];
     
+    
+    self.button8 = [self createButton:CGRectMake(50, 500, 150, 40) title:@"fadeOut"];
+    [self.button8 addTarget:self action:@selector(fadeOut) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.button8];
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -53,6 +59,11 @@
     [self.button5 addTarget:self action:@selector(show) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.button5];
     [self.button5 cl_show];
+    
+    self.button7 = [self createButton:CGRectMake(50, 450, 150, 40) title:@"fadeIn"];
+    [self.button7 addTarget:self action:@selector(fadeIn) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.button7];
+    [self.button7 cl_fadeIn];
 }
 
 -(UIButton *)createButton:(CGRect)frame title:(NSString *)title{
@@ -67,6 +78,12 @@
 }
 
 #pragma mark - actions
+-(void)fadeIn{
+    [self.button7 cl_fadeIn];
+}
+-(void)fadeOut{
+    [self.button8 cl_fadeOut];
+}
 -(void)hide{
     [self.button6 cl_hide:^{
         NSLog(@"hide");

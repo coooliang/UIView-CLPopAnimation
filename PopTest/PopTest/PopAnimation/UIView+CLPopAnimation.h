@@ -12,6 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (CLPopAnimation)
 
+-(void)cl_fadeIn;
+-(void)cl_fadeIn:(nullable void(^)(void))block;
+
+-(void)cl_fadeOut;
+-(void)cl_fadeOut:(nullable void(^)(void))block;
+
 -(void)cl_show;
 -(void)cl_show:(nullable void(^)(void))block;
 
