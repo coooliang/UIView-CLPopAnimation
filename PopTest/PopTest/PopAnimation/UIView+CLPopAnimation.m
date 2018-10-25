@@ -1,0 +1,187 @@
+//
+//  UIView+UIView_CLPopAnimation.m
+//  Test
+//
+//  Created by chenliang on 24/10/2018.
+//  Copyright © 2018 yypt. All rights reserved.
+//
+
+#import "UIView+CLPopAnimation.h"
+#import <POP.h>
+
+#define WEAKSELF typeof(self) __weak weakSelf = self;
+@implementation UIView (CLPopAnimation)
+
+-(void)hide{
+    [self hide:nil];
+}
+-(void)hide:(nullable void(^)(void))block{
+    POPSpringAnimation *springAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPViewSize];
+    springAnimation.toValue = [NSValue valueWithCGSize:CGSizeZero];
+    [springAnimation setCompletionBlock:^(POPAnimation *anim, BOOL finished) {
+        if (finished && block) {
+            block();
+        }
+    }];
+    [self pop_addAnimation:springAnimation forKey:nil];
+}
+
+-(void)show{
+    [self show:nil];
+}
+-(void)show:(void(^)(void))block{
+    POPSpringAnimation *springAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPViewSize];
+    springAnimation.fromValue = [NSValue valueWithCGSize:CGSizeZero];
+    springAnimation.toValue = [NSValue valueWithCGSize:self.frame.size];
+    springAnimation.springBounciness = 10;
+    [springAnimation setCompletionBlock:^(POPAnimation *anim, BOOL finished) {
+        if (finished && block) {
+            block();
+        }
+    }];
+    [self pop_addAnimation:springAnimation forKey:nil];
+}
+
+-(void)jelly{
+    [self jelly:nil];
+}
+-(void)jelly:(void(^)(void))block{
+    WEAKSELF
+    POPSpringAnimation *scaleAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
+    scaleAnimation.toValue = [NSValue valueWithCGSize:CGSizeMake(0.95, 0.95)];
+    scaleAnimation.springBounciness = 10.0f;
+    [scaleAnimation setCompletionBlock:^(POPAnimation *animation, BOOL finished) {
+        if (finished) {
+            __strong __typeof(weakSelf)strongSelf = weakSelf;
+            POPSpringAnimation *scaleAnimation2 = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
+            scaleAnimation2.velocity = [NSValue valueWithCGSize:CGSizeMake(3.f, 3.f)];
+            scaleAnimation2.toValue = [NSValue valueWithCGSize:CGSizeMake(1.f, 1.f)];
+            scaleAnimation2.springBounciness = 18.0f;
+            [scaleAnimation2 setCompletionBlock:^(POPAnimation *anim, BOOL finished) {
+                if (finished) {
+                    POPBasicAnimation *scaleAnimation3 = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
+                    scaleAnimation3.toValue = [NSValue valueWithCGSize:CGSizeMake(1.f, 1.f)];
+                    [scaleAnimation3 setCompletionBlock:^(POPAnimation *anim, BOOL finished) {
+                        if (finished && block) {
+                            block();
+                        }
+                    }];
+                    [strongSelf.layer pop_addAnimation:scaleAnimation3 forKey:nil];
+                }
+            }];
+            [weakSelf.layer pop_addAnimation:scaleAnimation2 forKey:nil];
+        }
+    }];
+    [self.layer pop_addAnimation:scaleAnimation forKey:nil];
+}
+
+-(void)shake{
+    [self shake:nil];
+}
+-(void)shake:(void(^)(void))block{
+    POPSpringAnimation *positionAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionX];
+    positionAnimation.fromValue = [NSValue valueWithCGPoint:CGPointMake(self.center.x-10, self.center.y)];
+    positionAnimation.toValue = [NSValue valueWithCGPoint:self.center];
+    positionAnimation.springSpeed = 10;
+    positionAnimation.springBounciness = 10;
+    [positionAnimation setCompletionBlock:^(POPAnimation *animation, BOOL finished) {
+        if(finished && block){
+            block();
+        }
+    }];
+    [self.layer pop_addAnimation:positionAnimation forKey:nil];
+}
+
+-(void)move:(NSValue *)point,...NS_REQUIRES_NIL_TERMINATION {
+    NSParameterAssert(point);
+    NSMutableArray *points = [NSMutableArray arrayWithCapacity:0];
+    [points addObject:point];
+    
+    va_list args;
+    NSValue *p;
+    va_start(args, point);
+    while ((p = va_arg(args, NSValue *))) {
+        [points addObject:p];
+    }
+    va_end(args);
+    [self cl_spring_move:1 points:points block:nil];
+}
+
+-(void)move:(void(^)(void))block point:(NSValue *)point,... NS_REQUIRES_NIL_TERMINATION {
+    NSParameterAssert(point);
+    NSMutableArray *points = [NSMutableArray arrayWithCapacity:0];
+    [points addObject:point];
+    
+    va_list args;
+    NSValue *p;
+    va_start(args, point);
+    while ((p = va_arg(args, NSValue *))) {
+        [points addObject:p];
+    }
+    va_end(args);
+    [self cl_spring_move:1 points:points block:block];
+}
+
+- (void)springMove:(NSValue *)point, ... NS_REQUIRES_NIL_TERMINATION {
+    NSParameterAssert(point);
+    NSMutableArray *points = [NSMutableArray arrayWithCapacity:0];
+    [points addObject:point];
+    
+    va_list args;
+    NSValue *p;
+    va_start(args, point);
+    while ((p = va_arg(args, NSValue *))) {
+        [points addObject:p];
+    }
+    va_end(args);
+     [self cl_spring_move:3 points:points block:nil];
+}
+
+-(void)springMove:(void(^)(void))block point:(NSValue *)point,... NS_REQUIRES_NIL_TERMINATION {
+    NSParameterAssert(point);
+    NSMutableArray *points = [NSMutableArray arrayWithCapacity:0];
+    [points addObject:point];
+    
+    va_list args;
+    NSValue *p;
+    va_start(args, point);
+    while ((p = va_arg(args, NSValue *))) {
+        [points addObject:p];
+    }
+    va_end(args);
+    [self cl_spring_move:3 points:points block:block];
+}
+
+#pragma mark - private move methods
+-(void)cl_spring_move:(int)dynamicsMass points:(NSMutableArray *)points block:(void(^)(void))block{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSValue *v = [points firstObject];
+        if(v){
+            [points removeObjectAtIndex:0];
+            WEAKSELF
+            [self blockMove:v dynamicsMass:dynamicsMass block:^{
+                [weakSelf cl_spring_move:dynamicsMass points:points block:block];
+            }];
+        }else{
+            if (block) {
+                block();
+            }
+        }
+    });
+}
+
+-(void)blockMove:(NSValue *)v dynamicsMass:(int)dynamicsMass block:(void(^)(void))block{
+    POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPViewCenter];
+    anim.toValue = v;
+    anim.dynamicsMass = dynamicsMass;
+    [anim setCompletionBlock:^(POPAnimation *anim, BOOL finished) {
+        if(finished && block){
+            block();
+        }
+    }];
+    [self pop_addAnimation:anim forKey:nil];
+}
+
+#pragma mark -
+
+@end
