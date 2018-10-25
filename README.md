@@ -3,6 +3,8 @@
 #### Project introduction
 UIView animation category with pop 
 
+support ios 8 or later
+
 #### 1.cocoapod add pop framework
 
 ```
