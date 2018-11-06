@@ -12,6 +12,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (CLPopAnimation)
 
+
+-(void)circle:(CGPoint)center color:(UIColor *)strokeColor lineWidth:(CGFloat)lineWidth strokeEnd:(CGFloat)strokeEnd;
+
+-(void)corner:(float)radius;
+-(void)corner;
+
+-(void)cl_line:(NSValue *)point,...NS_REQUIRES_NIL_TERMINATION;
+
 -(void)cl_fadeIn;
 -(void)cl_fadeIn:(nullable void(^)(void))block;
 

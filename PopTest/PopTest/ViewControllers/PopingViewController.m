@@ -20,6 +20,8 @@
 @property(nonatomic,strong)UIButton *button6;
 @property(nonatomic,strong)UIButton *button7;
 @property(nonatomic,strong)UIButton *button8;
+@property(nonatomic,strong)UIButton *button9;
+@property(nonatomic,strong)UIButton *button10;
 
 @end
 
@@ -54,6 +56,14 @@
     self.button8 = [self createButton:CGRectMake(50, 500, 150, 40) title:@"fadeOut"];
     [self.button8 addTarget:self action:@selector(fadeOut) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.button8];
+    
+    self.button9 = [self createButton:CGRectMake(50, 550, 150, 40) title:@"line"];
+    [self.button9 addTarget:self action:@selector(line) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.button9];
+    
+    self.button10 = [self createButton:CGRectMake(50, 600, 150, 40) title:@"circle"];
+    [self.button10 addTarget:self action:@selector(circle) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.button10];
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -80,6 +90,13 @@
 }
 
 #pragma mark - actions
+-(void)circle{
+    [self.view circle:self.view.center color:[UIColor blackColor] lineWidth:4 strokeEnd:0.5];
+}
+-(void)line{
+    [self.view cl_line:nil];
+    
+}
 -(void)fadeIn{
     [self.button7 cl_fadeIn];
 }
