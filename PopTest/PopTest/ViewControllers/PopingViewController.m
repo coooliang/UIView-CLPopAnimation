@@ -91,10 +91,12 @@
 
 #pragma mark - actions
 -(void)circle{
-    [self.view circle:self.view.center color:[UIColor blackColor] lineWidth:4 strokeEnd:0.5];
+    [self.view circle:150 lineWidth:6 color:[UIColor blackColor]];
 }
 -(void)line{
-    [self.view cl_line:nil];
+    NSArray *points = @[[NSValue valueWithCGPoint:CGPointMake(100, 100)],[NSValue valueWithCGPoint:CGPointMake(100, 200)],[NSValue valueWithCGPoint:CGPointMake(150, 150)]];
+    
+    [self.view cl_line:[UIColor greenColor] width:4 points:points];
     
 }
 -(void)fadeIn{

@@ -20,46 +20,33 @@
     [self corner:5];
 }
 
--(void)circle:(CGPoint)center color:(UIColor *)strokeColor lineWidth:(CGFloat)lineWidth strokeEnd:(CGFloat)strokeEnd{
-//    CGFloat radius = CGRectGetWidth(self.bounds)/2 - lineWidth/2;
-//    CAShapeLayer *circleLayer = [CAShapeLayer layer];
-//    CGFloat diameter = radius * 2;
-////    CGRect rect = CGRectMake(center.x-radius,center.y-radius,diameter,diameter);
-//    circleLayer.path = (__bridge CGPathRef _Nullable)([UIBezierPath bezierPathWithArcCenter:center radius:radius startAngle:0 endAngle:M_PI_2 clockwise:YES]);
-//    circleLayer.strokeColor = [UIColor blackColor].CGColor;
-//    circleLayer.fillColor = nil;
-//    circleLayer.lineWidth = lineWidth;
-////    circleLayer.lineCap = kCALineCapRound;
-////    circleLayer.lineJoin = kCALineJoinRound;
-//    [self.layer addSublayer:circleLayer];
-//
-////    POPSpringAnimation *strokeAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPShapeLayerStrokeEnd];
-////    strokeAnimation.fromValue = 0;
-////    strokeAnimation.toValue = @(strokeEnd);
-////    strokeAnimation.springBounciness = 12.f;
-////    strokeAnimation.removedOnCompletion = NO;
-////    [circleLayer pop_addAnimation:strokeAnimation forKey:nil];
-    
-    // 线的路径
-    UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:center radius:50.0 startAngle:0 endAngle:M_PI_2 clockwise:YES];
+-(void)circle:(float)radius lineWidth:(CGFloat)lineWidth color:(UIColor *)strokeColor{
+    UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:self.center radius:radius startAngle:0 endAngle:10 clockwise:YES];
     CAShapeLayer *pathLayer = [CAShapeLayer layer];
-    pathLayer.lineWidth = 2;
-    pathLayer.strokeColor = [UIColor greenColor].CGColor;
+    pathLayer.lineWidth = lineWidth;
+    pathLayer.strokeColor = strokeColor.CGColor;
     pathLayer.fillColor = nil; // 默认为blackColor
     pathLayer.path = path.CGPath;
     [self.layer addSublayer:pathLayer];
-    
-    POPSpringAnimation *strokeAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPShapeLayerStrokeEnd];
-    strokeAnimation.fromValue = 0;
-    strokeAnimation.toValue = @(strokeEnd);
-    strokeAnimation.springBounciness = 12.f;
-    strokeAnimation.removedOnCompletion = NO;
-    [pathLayer pop_addAnimation:strokeAnimation forKey:nil];
 }
 
--(void)cl_line:(NSValue *)point,...NS_REQUIRES_NIL_TERMINATION {
-
+-(void)cl_line:(UIColor *)color width:(float)width points:(NSArray *)points {
+    NSParameterAssert(points);
+    UIBezierPath* path = [UIBezierPath bezierPath];
+    NSValue *startPoint = [points objectAtIndex:0];
+    [path moveToPoint:[startPoint CGPointValue]];
     
+    for (int i=1; i<points.count; i++) {
+        NSValue *p = points[i];
+        [path addLineToPoint:[p CGPointValue]];
+    }
+    
+    CAShapeLayer *pathLayer = [CAShapeLayer layer];
+    pathLayer.lineWidth = width;
+    pathLayer.strokeColor = color.CGColor;
+    pathLayer.fillColor = nil;
+    pathLayer.path = path.CGPath;
+    [self.layer addSublayer:pathLayer];
 }
 
 -(void)cl_fadeIn{
