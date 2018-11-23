@@ -15,6 +15,9 @@
 		90190E6B21816D400027E8E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 90190E6A21816D400027E8E7 /* main.m */; };
 		90190E7721816DB90027E8E7 /* UIView+CLPopAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 90190E7221816DB80027E8E7 /* UIView+CLPopAnimation.m */; };
 		90190E7821816DB90027E8E7 /* PopingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90190E7521816DB80027E8E7 /* PopingViewController.m */; };
+		9093F59B21A7CE5B00C7E39B /* UILabel+CLFaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 9093F59A21A7CE5B00C7E39B /* UILabel+CLFaster.m */; };
+		9093F59E21A7CE9600C7E39B /* UIView+CLFaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 9093F59D21A7CE9600C7E39B /* UIView+CLFaster.m */; };
+		9093F5A121A7CFB900C7E39B /* UIButton+CLFaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 9093F5A021A7CFB900C7E39B /* UIButton+CLFaster.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +36,13 @@
 		90190E7321816DB80027E8E7 /* UIView+CLPopAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CLPopAnimation.h"; sourceTree = "<group>"; };
 		90190E7521816DB80027E8E7 /* PopingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopingViewController.m; sourceTree = "<group>"; };
 		90190E7621816DB80027E8E7 /* PopingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopingViewController.h; sourceTree = "<group>"; };
+		9093F59921A7CE5B00C7E39B /* UILabel+CLFaster.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+CLFaster.h"; sourceTree = "<group>"; };
+		9093F59A21A7CE5B00C7E39B /* UILabel+CLFaster.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+CLFaster.m"; sourceTree = "<group>"; };
+		9093F59C21A7CE9600C7E39B /* UIView+CLFaster.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+CLFaster.h"; sourceTree = "<group>"; };
+		9093F59D21A7CE9600C7E39B /* UIView+CLFaster.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+CLFaster.m"; sourceTree = "<group>"; };
+		9093F59F21A7CFB900C7E39B /* UIButton+CLFaster.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+CLFaster.h"; sourceTree = "<group>"; };
+		9093F5A021A7CFB900C7E39B /* UIButton+CLFaster.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+CLFaster.m"; sourceTree = "<group>"; };
+		9093F5A221A7D0CC00C7E39B /* UIViewCLFaster.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIViewCLFaster.h; sourceTree = "<group>"; };
 		B11D45057D58ADFBAAA453D9 /* Pods-PopTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopTest.release.xcconfig"; path = "Target Support Files/Pods-PopTest/Pods-PopTest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,6 +79,7 @@
 		90190E5A21816D3D0027E8E7 /* PopTest */ = {
 			isa = PBXGroup;
 			children = (
+				9093F59821A7CDB000C7E39B /* CLFaster */,
 				90190E7121816DB80027E8E7 /* PopAnimation */,
 				90190E7421816DB80027E8E7 /* ViewControllers */,
 				90190E5B21816D3D0027E8E7 /* AppDelegate.h */,
@@ -99,6 +110,20 @@
 				90190E7521816DB80027E8E7 /* PopingViewController.m */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		9093F59821A7CDB000C7E39B /* CLFaster */ = {
+			isa = PBXGroup;
+			children = (
+				9093F59921A7CE5B00C7E39B /* UILabel+CLFaster.h */,
+				9093F59A21A7CE5B00C7E39B /* UILabel+CLFaster.m */,
+				9093F59C21A7CE9600C7E39B /* UIView+CLFaster.h */,
+				9093F59D21A7CE9600C7E39B /* UIView+CLFaster.m */,
+				9093F59F21A7CFB900C7E39B /* UIButton+CLFaster.h */,
+				9093F5A021A7CFB900C7E39B /* UIButton+CLFaster.m */,
+				9093F5A221A7D0CC00C7E39B /* UIViewCLFaster.h */,
+			);
+			path = CLFaster;
 			sourceTree = "<group>";
 		};
 		A8FB2E9A25566700D2C37E2F /* Pods */ = {
@@ -217,7 +242,10 @@
 				90190E7821816DB90027E8E7 /* PopingViewController.m in Sources */,
 				90190E6021816D3D0027E8E7 /* ViewController.m in Sources */,
 				90190E6B21816D400027E8E7 /* main.m in Sources */,
+				9093F59B21A7CE5B00C7E39B /* UILabel+CLFaster.m in Sources */,
+				9093F59E21A7CE9600C7E39B /* UIView+CLFaster.m in Sources */,
 				90190E5D21816D3D0027E8E7 /* AppDelegate.m in Sources */,
+				9093F5A121A7CFB900C7E39B /* UIButton+CLFaster.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

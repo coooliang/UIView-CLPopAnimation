@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "PopingViewController.h"
+#import "UIViewCLFaster.h"
 
 @interface ViewController ()
 
@@ -18,8 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(100, 100, 100, 50)];
-    [button setTitle:@"push" forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [button setNormalTitle:@"push" color:[UIColor blackColor]];
     [button addTarget:self action:@selector(push) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
 }

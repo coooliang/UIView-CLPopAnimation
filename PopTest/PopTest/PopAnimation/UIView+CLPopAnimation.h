@@ -15,9 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)cl_line:(UIColor *)color width:(float)width points:(NSArray *)points;
 -(void)circle:(float)radius lineWidth:(CGFloat)lineWidth color:(UIColor *)strokeColor;
 
--(void)corner:(float)radius;
--(void)corner;
-
 -(void)cl_fadeIn;
 -(void)cl_fadeIn:(nullable void(^)(void))block;
 

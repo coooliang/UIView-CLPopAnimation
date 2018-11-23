@@ -9,6 +9,7 @@
 #import "PopingViewController.h"
 #import <POP.h>
 #import "UIView+CLPopAnimation.h"
+#import "UIViewCLFaster.h"
 
 @interface PopingViewController ()
 
@@ -80,11 +81,8 @@
 
 -(UIButton *)createButton:(CGRect)frame title:(NSString *)title{
     UIButton *button = [[UIButton alloc]initWithFrame:frame];
-    [button setTitle:title forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    button.layer.borderWidth = 1;
-    button.layer.borderColor = [UIColor blackColor].CGColor;
-    button.layer.masksToBounds = YES;
+    [button setNormalTitle:title color:[UIColor blackColor]];
+    [button setBorder:1 color:[UIColor blackColor]];
     [self.view addSubview:button];
     return button;
 }

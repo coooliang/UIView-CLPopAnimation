@@ -12,14 +12,6 @@
 #define WEAKSELF typeof(self) __weak weakSelf = self;
 @implementation UIView (CLPopAnimation)
 
--(void)corner:(float)radius{
-    self.layer.cornerRadius = radius;
-    self.layer.masksToBounds = YES;
-}
--(void)corner{
-    [self corner:5];
-}
-
 -(void)circle:(float)radius lineWidth:(CGFloat)lineWidth color:(UIColor *)strokeColor{
     UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:self.center radius:radius startAngle:0 endAngle:10 clockwise:YES];
     CAShapeLayer *pathLayer = [CAShapeLayer layer];
