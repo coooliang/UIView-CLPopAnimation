@@ -16,6 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)corner;
 -(void)setBorder:(float)width color:(UIColor *)color;
 
++(UIView *)createHorizontalLine:(CGPoint)startPoint width:(float)width;
++(UIView *)createVerticalLine:(CGPoint)startPoint height:(float)height;
+
 @end
 
 NS_ASSUME_NONNULL_END
