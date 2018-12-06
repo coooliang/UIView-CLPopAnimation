@@ -80,7 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				9093F59821A7CDB000C7E39B /* CLFaster */,
-				90190E7121816DB80027E8E7 /* PopAnimation */,
+				90190E7121816DB80027E8E7 /* CLPopAnimation */,
 				90190E7421816DB80027E8E7 /* ViewControllers */,
 				90190E5B21816D3D0027E8E7 /* AppDelegate.h */,
 				90190E5C21816D3D0027E8E7 /* AppDelegate.m */,
@@ -94,13 +94,13 @@
 			path = PopTest;
 			sourceTree = "<group>";
 		};
-		90190E7121816DB80027E8E7 /* PopAnimation */ = {
+		90190E7121816DB80027E8E7 /* CLPopAnimation */ = {
 			isa = PBXGroup;
 			children = (
 				90190E7321816DB80027E8E7 /* UIView+CLPopAnimation.h */,
 				90190E7221816DB80027E8E7 /* UIView+CLPopAnimation.m */,
 			);
-			path = PopAnimation;
+			path = CLPopAnimation;
 			sourceTree = "<group>";
 		};
 		90190E7421816DB80027E8E7 /* ViewControllers */ = {
